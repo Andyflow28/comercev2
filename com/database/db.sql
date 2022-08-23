@@ -1,0 +1,13 @@
+CREATE DATABASE commercedb IF NOT EXISTS;
+
+use commercedb;
+
+CREATE TABLE user(
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  UserName VARCHAR(200),
+  email VARCHAR(200),
+  password VARCHAR(200),
+  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+describe commercedb;
