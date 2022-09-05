@@ -1,8 +1,46 @@
 import Image from "next/image";
 import Head from "next/head";
 import favicon from "../public/favicon.ico";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 
 const Register = () => {
+  const router = useRouter();
+  const [register, setRegister] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setRegister({
+      ...register,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+        await axios
+        .get("/api/revition")
+        .then((response) => router.push("/"))
+        .catch((response) => console.log("no se ha logeado"));
+    }
+    fetchData();
+  }, [router]);
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post("/api/auth/user", register);
+      router.push("/Signin");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(register);
+
   return (
     <>
       <Head>
@@ -11,15 +49,9 @@ const Register = () => {
         <link rel="shortcut icon" href={favicon.src} type="image/x-icon" />
       </Head>
       <div className="w-screen h-screen bg-gradient-to-r from-indigo-500/50 via-purple-500/50 to-pink-500/50 flex flex-col items-center justify-center">
-
-        <div className="bg-gray-100/75 w-11/12 rounded-3xl h-96 flex flex-col items-center sm:w-4/12">
+        <div className="bg-gray-100/75 w-11/12 rounded-3xl sm:h-3/6 h-[28rem] flex flex-col items-center sm:w-4/12">
           <div className="w-24 py-5 flex pr-5 pl-4 bg-blue-900 rounded-full mt-10">
-            <Image
-              alt="user icon"
-              src="/c.png"
-              width="64"
-              height="64px"
-            />
+            <Image alt="user icon" src="/c.png" width="64" height="64px" />
           </div>
           <div>
             <form>
@@ -33,8 +65,27 @@ const Register = () => {
                   />
                 </div>
                 <input
+                  type="text"
+                  name="username"
+                  placeholder="User Name"
+                  onChange={handleChange}
+                  className="bg-[#395173] text-zinc-100 pl-3 py-2 focus:outline-none caret-zinc-400"
+                />
+              </div>
+              <div className="flex my-8">
+                <div className="bg-blue-900 w-10 px-3 pb-1 pt-3">
+                  <Image
+                    alt="icon user"
+                    width="64px"
+                    height="64px"
+                    src="/img/login/email.png"
+                  />
+                </div>
+                <input
                   type="email"
+                  name="email"
                   placeholder="Email ID"
+                  onChange={handleChange}
                   className="bg-[#395173] text-zinc-100 pl-3 py-2 focus:outline-none caret-zinc-400"
                 />
               </div>
@@ -49,7 +100,9 @@ const Register = () => {
                 </div>
                 <input
                   type="password"
+                  name="password"
                   placeholder="Password"
+                  onChange={handleChange}
                   className="bg-[#395173] text-zinc-100 pl-3 py-2 focus:outline-none caret-zinc-400"
                 />
               </div>
@@ -69,7 +122,10 @@ const Register = () => {
             </div>
           </div>
         </div>
-        <button className="bg-gradient-to-t from-gray-100 text-white w-4/6 py-3 text-2xl font-extrabold rounded-b-2xl sm:w-1/6">
+        <button
+          className="bg-gradient-to-t from-gray-100 text-white w-4/6 py-3 text-2xl font-extrabold rounded-b-2xl sm:w-1/6"
+          onClick={handleSubmit}
+        >
           Sign Up
         </button>
       </div>

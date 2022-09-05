@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-const NavBarNew = () => {
+const NavBar = () => {
   const close = "bg-cyan-700 hidden sm:flex";
   const open = "bg-cyan-700";
   const menu_icon = "/img/navegacion.png";
@@ -160,4 +160,4 @@ const NavBarNew = () => {
   );
 };
 
-export default NavBarNew;
+export default NavBar;

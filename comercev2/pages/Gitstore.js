@@ -33,9 +33,9 @@ function Gitstore() {
 
   const getProducts = async () => {
     const response = await axios.get('/api/card')
-    const products = response.data.product
-    const productsPayed = response.data.payed
-    productsPayed.forEach(item => {
+    const products = await response.data.product
+    const productsPayed = await response.data.payed
+    await productsPayed.forEach(item => {
       for (const index in products) {
         if (products[index].id_product === item.product_id_product) {
           products.splice(index, 1);

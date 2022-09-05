@@ -1,6 +1,9 @@
 import {pool} from "../../config/db"
+import dotenv from 'dotenv-safe'
 
-export default async function carrdhandler(req, res) {
+dotenv.config()
+
+export default async function cardhandler(req, res) {
     return await getPagins(req, res);
 }
 
