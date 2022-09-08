@@ -48,7 +48,7 @@ const Bar = () => {
 
           <div className=" bg-slate-400 h-px w-full sm:hidden"></div>
 
-          <Link href={"#"}>
+          <Link href={"/Shopcar"}>
             <a className="flex my-2 sm:my-0 sm:items-center sm:py-5 items-center">
               <div className="flex mr-1 sm:block sm:mt-3">
                 <Image

@@ -9,11 +9,10 @@ export default async function loginHandler(req, res) {
   const { email, password } = req.body;
 
   const valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-  const text = /^\s+$/;
   if (
     valid.test(email) &&
-    text.test(email) &&
-    text.password &&
+    (typeof email === typeof "") &&
+    (typeof password === typeof "") &&
     password.length >= 8 &&
     email.length > 0
   ) {

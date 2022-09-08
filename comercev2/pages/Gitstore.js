@@ -9,9 +9,15 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Pagination from '../components/Pagination'
 import favicon from '../public/favicon.ico';
+import { fetchAllproductbuys } from '../slice/product_buy';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Gitstore() {
   const router = useRouter()
+
+  const { listBuy: product_buy } = useSelector(state => state.product_buy);
+
+  const dispatch = useDispatch();
 
   const [nav, setNav] = useState(<div></div>);
 
@@ -52,7 +58,7 @@ function Gitstore() {
 
   const Route = (e) => {
     dispatch(fetchAllproductbuys(e));
-    router.push('/profilePages/Buy')
+    router.push('/Buy')
   }
 
   //* Utilidades
@@ -66,27 +72,27 @@ function Gitstore() {
     if (Number.isInteger(((card.length) / (select)))) {
       for (let i = Math.floor(ind * ((card.length) / (select))); i <= Math.round((ind + 1) * ((card.length) / (select))); i++) {
         cart.push(
-          <Card key={i - 1} color="orange" title={card[i].name_product} eventFunction={router.push} variable={'/SignIn'} />
+          <Card key={i - 1} color="orange" title={card[i].name_product} eventFunction={Route} variable={card[i].id_product} />
         );
       }
     } else if (!Number.isInteger(((card.length) / (select)))) {
       if (ind <= 3) {
         for (let i = Math.floor(ind * ((card.length) / (select))); i <= Math.round((ind + 1) * ((card.length) / (select))); i++) {
           cart.push(
-            <Card key={i - 1} color="orange" title={card[i].name_product} eventFunction={router.push} variable={'/SignIn'} />
+            <Card key={i - 1} color="orange" title={card[i].name_product} eventFunction={Route} variable={card[i].id_product} />
           );
         }
       } else if (m = 4) {
         for (let i = Math.round((4 / select) * (card.length) - 1); (i <= card.length - 1); i++) {
           cart.push(
-            <Card key={i - 1} color="orange" title={card[i].name_product} eventFunction={router.push} variable={'/SignIn'} />
+            <Card key={i - 1} color="orange" title={card[i].name_product} eventFunction={Route} variable={card[i].id_product} />
           );
         }
       }
     }
   } else if (e === undefined && ind !== select) {
     cart.push(
-      <div className='w-5/6 h-48 flex items-center justify-center bg-cyan-700 rounded-xl my-10 md:h-96 md:my-1'>
+      <div className='w-5/6 h-48 flex items-center justify-center bg-cyan-700 rounded-xl my-10 sm:h-96 sm:my-1'>
         <p className='text-4xl text-violet-300 font-extrabold'>Loading... </p>
       </div>
     )
@@ -112,8 +118,8 @@ function Gitstore() {
         <Bar />
 
         <div className="flex flex-col text-center">
-          <h2 className="text-4xl text-violet-700 md:my-10">The Best e-Commerce</h2>
-          <div className="flex flex-wrap justify-center md:mb-20 md:mt-10">
+          <h2 className="text-4xl text-violet-700 sm:my-10">The Best e-Commerce</h2>
+          <div className="flex flex-wrap justify-center sm:mb-20 sm:mt-10">
             {
               cart
             }

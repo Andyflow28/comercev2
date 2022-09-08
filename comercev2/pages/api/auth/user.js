@@ -1,7 +1,7 @@
 import { pool } from "../../../config/db";
-import dotenv from 'dotenv-safe'
+import dotenv from "dotenv-safe";
 
-dotenv.config()
+dotenv.config();
 
 export default async function handlerUsers(req, res) {
   switch (req.method) {
@@ -26,13 +26,12 @@ const getUsers = async (req, res) => {
 const registerUser = async (req, res) => {
   try {
     const valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-    const text = /^\s+$/;
     const { username, email, password } = req.body;
     if (
       valid.test(email) &&
-      text.test(email) &&
-      text.password &&
-      text.username &&
+      typeof email === typeof "" &&
+      typeof password === typeof "" &&
+      typeof username === typeof "" &&
       password.length >= 8 &&
       username.length > 0 &&
       email.length > 0
@@ -41,12 +40,12 @@ const registerUser = async (req, res) => {
       const usernames = [];
       const [consult] = await pool.query("SELECT * FROM user;");
 
-      consult.map((e) => {
+      await consult.map((e) => {
         emails.push(e.email);
         usernames.push(e.password);
       });
 
-      if (!emails.includes(email) && !usernames.includes(usernames)) {
+      if (!emails.includes(email) && !usernames.includes(username)) {
         const result = await pool.query("INSERT INTO user SET ?", {
           username,
           email,
@@ -55,10 +54,11 @@ const registerUser = async (req, res) => {
 
         return res.status(200).json({ ...req.body, id: result.insertId });
       }
+    } else {
+      return res
+        .status(200)
+        .json({ message: "no tiene los parametros aceptables" });
     }
-    return res
-      .status(200)
-      .json({ message: "no tiene los parametros aceptables" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: error.message });

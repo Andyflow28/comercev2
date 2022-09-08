@@ -67,18 +67,18 @@ export default function Home() {
 
         <Bar></Bar>
 
-        <div className="bg-gradient-to-t from-indigo-500 via-purple-500 to-pink-500 w-screen h-screen flex items-center">
+        <div className="bg-gradient-to-t from-indigo-500 via-purple-500 to-pink-500 w-screen h-96 flex items-center sm:h-screen text-center">
           <div className="text-center flex mx-auto w-5/6 justify-center font-bold">
-            <h2 className="font-sans text-white text-8xl w-4/6">
-              The Best Web Site of Surveys
+            <h2 className="font-sans text-white sm:text-8xl w-4/6 text-5xl text-center">
+              The Best Web Site of commerce
             </h2>
           </div>
         </div>
 
-        <div className="bg-white h-[30rem] flex justify-around">
+        <div className="bg-white h-[45rem] flex justify-around flex-col my-5 sm:flex-row sm:h-[40rem]">
           <div className="my-auto">
-            <p className="text-cyan-700 text-4xl mb-5 font-bold">Features</p>
-            <p className="text-sm w-96 text-zinc-600">
+            <p className="text-cyan-700 text-4xl mb-5 font-bold ml-5">Features</p>
+            <p className="text-sm w-[20rem] text-zinc-600 mx-5 mb-5 sm:m-0 sm:w-[30rem]">
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
               quae ab illo inventore veritatis et quasi architecto beatae vitae
@@ -93,7 +93,7 @@ export default function Home() {
             </p>
           </div>
           <div className="my-auto">
-            <div className="bg-cyan-700 w-[40rem] h-96 p-8 flex">
+            <div className="bg-cyan-700 w-[20rem] h-72 p-8 flex mx-auto sm:mx-0 sm:w-[40rem] sm:h-[30rem]">
               <Image
                 alt="surveys"
                 width={"1920px"}

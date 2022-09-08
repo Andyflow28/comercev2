@@ -68,7 +68,7 @@ const NavBar = () => {
               <div className="cursor-pointer flex items-center my-1">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image
-                    src="/img/home/home.png"
+                    src="/img/navegation/home.png"
                     alt="menu icon"
                     className="md:hidden"
                     width="56px"
@@ -83,7 +83,7 @@ const NavBar = () => {
               <div className="cursor-pointer flex items-center my-1 ">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image
-                    src="/img/home/web.png"
+                    src="/img/navegation/web.png"
                     alt="menu icon"
                     className="md:hidden"
                     width="56px"
@@ -98,7 +98,7 @@ const NavBar = () => {
               <div className="cursor-pointer flex items-center my-1 ">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image
-                    src="/img/home/about.png"
+                    src="/img/navegation/about.png"
                     alt="menu icon"
                     className="md:hidden"
                     width="56px"
@@ -116,7 +116,7 @@ const NavBar = () => {
               <div className="cursor-pointer flex items-center my-1 ">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image
-                    src="/img/home/sign_in.png"
+                    src="/img/navegation/sign_in.png"
                     alt="menu icon"
                     className="md:hidden"
                     width="56px"
@@ -131,7 +131,7 @@ const NavBar = () => {
               <div className="cursor-pointer flex items-center my-1 ">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image
-                    src="/img/home/add.png"
+                    src="/img/navegation/add.png"
                     alt="menu icon"
                     className="md:hidden"
                     width="56px"

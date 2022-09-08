@@ -1,8 +1,11 @@
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const NavBarSession = () => {
+  const router = useRouter()
   const close = "bg-cyan-700 hidden sm:flex";
   const open = "bg-cyan-700";
   const menu_icon = "/img/navegacion.png";
@@ -15,6 +18,11 @@ const NavBarSession = () => {
   const [menuIcon, setMenuIcon] = useState(menu_icon);
   const [searchs, setSearchs] = useState(search_out);
   const [session, setSession] = useState();
+
+  const logoutHandler = async () => {
+    const response = await axios.post('/api/auth/logout')
+    router.reload()
+  }
 
   return (
     <>
@@ -136,7 +144,9 @@ const NavBarSession = () => {
                     height="56px"
                   />
                 </div>
-                <a className="text-2xl text-violet-700 font-bold ml-1 sm:mr-5 sm:p-3 sm:hover:text-cyan-700 sm:transition sm:duration-500 sm:rounded sm:border-4 sm:border-white sm:hover:bg-white sm:font-semibold">
+                <a className="text-2xl text-violet-700 font-bold ml-1 sm:mr-5 sm:p-3 sm:hover:text-cyan-700 sm:transition sm:duration-500 sm:rounded sm:border-4 sm:border-white sm:hover:bg-white sm:font-semibold" onClick={() => {
+                  logoutHandler()
+                }}>
                   Logout
                 </a>
               </div>
