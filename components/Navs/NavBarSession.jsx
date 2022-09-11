@@ -22,7 +22,6 @@ const NavBarSession = () => {
   const [menu, setMenu] = useState(close);
   const [menuIcon, setMenuIcon] = useState(menu_icon);
   const [searchs, setSearchs] = useState(search_out);
-  const [session, setSession] = useState();
   const [log, setLog] = useState(hidden_log);
 
   const logoutHandler = async () => {
@@ -108,7 +107,7 @@ const NavBarSession = () => {
               </div>
             </Link>
             <div className="w-28 h-[1px] bg-white sm:hidden"></div>
-            <Link href="/">
+            <Link href="/About">
               <div className="cursor-pointer flex items-center my-1 ">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image

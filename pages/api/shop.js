@@ -11,13 +11,13 @@ export default async function shophandler(req, res) {
     const [consult] = await pool.query(
       `SELECT id FROM user WHERE email = '${user.email}'`
     );
-    if(consult[0] !== undefined) {
+    if (consult[0] !== undefined) {
       const [select] = await pool.query(
         `SELECT id_order FROM order_user WHERE user_id = ${consult[0].id}`
       );
-      if(select[0] !== undefined) {
-        console.log(select.length);     
-        for (let i = 0; i <= (select.length - 1); i++) {
+      if (select[0] !== undefined) {
+        console.log(select.length);
+        for (let i = 0; i <= select.length - 1; i++) {
           const [restore] = await pool.query(
             `SELECT product_id_product FROM order_details WHERE order_id_order = ${select[i].id_order}`
           );
@@ -26,7 +26,6 @@ export default async function shophandler(req, res) {
         }
       }
     }
-
 
     if (ids !== []) {
       for (let i = 0; i <= ids.length - 1; i++) {

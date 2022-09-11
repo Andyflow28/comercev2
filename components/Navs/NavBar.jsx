@@ -14,7 +14,7 @@ const NavBar = () => {
   const [menu, setMenu] = useState(close);
   const [menuIcon, setMenuIcon] = useState(menu_icon);
   const [searchs, setSearchs] = useState(search_out);
-  const [session, setSession] = useState()
+  const [session, setSession] = useState();
 
   return (
     <>
@@ -94,7 +94,7 @@ const NavBar = () => {
               </div>
             </Link>
             <div className="w-28 h-[1px] bg-white sm:hidden"></div>
-            <Link href="/">
+            <Link href="/About">
               <div className="cursor-pointer flex items-center my-1 ">
                 <div className="flex w-7 h-6 justify-center sm:hidden">
                   <Image
@@ -105,7 +105,9 @@ const NavBar = () => {
                     height="56px"
                   />
                 </div>
-                <a className="text-2xl text-white ml-1 sm:ml-5 sm:p-3">About Us</a>
+                <a className="text-2xl text-white ml-1 sm:ml-5 sm:p-3">
+                  About Us
+                </a>
               </div>
             </Link>
           </div>
@@ -123,7 +125,9 @@ const NavBar = () => {
                     height="56px"
                   />
                 </div>
-                <a className="text-2xl text-white ml-1 sm:mr-5 sm:p-3">Sign In</a>
+                <a className="text-2xl text-white ml-1 sm:mr-5 sm:p-3">
+                  Sign In
+                </a>
               </div>
             </Link>
             <div className="w-28 h-[1px] bg-white sm:hidden"></div>
@@ -138,7 +142,9 @@ const NavBar = () => {
                     height="56px"
                   />
                 </div>
-                <a className="text-2xl text-white ml-1 sm:mr-5 sm:p-3 sm:hover:text-cyan-700 sm:transition sm:duration-500 sm:rounded sm:border-4 sm:border-white sm:hover:bg-white sm:font-semibold">Sing Up</a>
+                <a className="text-2xl text-white ml-1 sm:mr-5 sm:p-3 sm:hover:text-cyan-700 sm:transition sm:duration-500 sm:rounded sm:border-4 sm:border-white sm:hover:bg-white sm:font-semibold">
+                  Sing Up
+                </a>
               </div>
             </Link>
           </div>
@@ -146,7 +152,10 @@ const NavBar = () => {
       </div>
 
       <div className={searchs}>
-        <input type="text" className="py-1 px-2 rounded-3xl sm:text-2xl sm:w-4/6 sm:py-2 sm:px-3" />
+        <input
+          type="text"
+          className="py-1 px-2 rounded-3xl sm:text-2xl sm:w-4/6 sm:py-2 sm:px-3"
+        />
         <div className="w-9 h-9 ml-3 sm:w-12 sm:h-12">
           <Image
             src="/img/search.png"

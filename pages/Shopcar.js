@@ -13,24 +13,33 @@ export const ShopCar = () => {
   const [session, setSession] = useState(undefined);
   const [shop, setShop] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
+  const getProfile = async () => {
+    await axios.get("/api/profile").then((response) => {
+      if (response !== undefined) {
+        setUser({
+          username: response.data.username,
+          email: response.data.email,
+        });
+      }
+    });
+    if (session) {
       const response = await axios.get("/api/shop");
       setShop(response.data);
-      console.log(response);
     }
-    fetchData();
-  }, []);
+  };
 
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get("/api/revition");
       if (response.data.status) {
         setNav(<NavBarSession />);
+        setSession(response.data.status);
       } else {
         setNav(<NavBar />);
+        setSession(response.data.status);
       }
     }
+    getProfile();
     fetchData();
   }, []);
 
@@ -39,66 +48,43 @@ export const ShopCar = () => {
     email: "",
   });
 
-  const getProfile = async () => {
-    await axios
-      .get("/api/profile")
-      .then((response) => setSession(response.data.status))
-      .then((response) => {
-        if (response !== undefined) {
-          setUser({
-            username: response.data.username,
-            email: response.data.email,
-          });
-        }
-      });
-  };
-
-  useEffect(() => {
-    getProfile();
-  }, []);
-  let shopCar = []
-  for(let i = 1; i<=shop.length; i++) {
+  let shopCar = [];
+  for (let i = 1; i <= shop.length; i++) {
     shopCar.push(
       <div
-      className="w-44 sm:w-56 bg-white flex sm:mx-10 flex-col justify-center border-2 border-yellow-400 text-center my-5 mx-1 sm:items-center rounded-xl"
-      key={i}
-    >
-      <div className="sm:hidden">
-        <Image
-          src="/img/product/product1.jpg"
-          alt="product"
-          width="172px"
-          height="112px"
-          className="bg-contain rounded-xl"
-        />
+        className="w-44 sm:w-56 bg-white flex sm:mx-10 flex-col justify-center border-2 border-yellow-400 text-center my-5 mx-1 sm:items-center rounded-xl"
+        key={i}
+      >
+        <div className="sm:hidden">
+          <Image
+            src="/img/product/product1.jpg"
+            alt="product"
+            width="172px"
+            height="112px"
+            className="bg-contain rounded-xl"
+          />
+        </div>
+        <div className="hidden sm:block">
+          <Image
+            src="/img/product/product1.jpg"
+            alt="product"
+            width="220px"
+            height="200px"
+          />
+        </div>
+        <p className="text-violet-700 mt-1">{shop[i - 1]}</p>
+        <div className="flex items-center justify-between">
+          <div className="container w-16 h-3 flex ml-1 mr-auto"></div>
+        </div>
       </div>
-      <div className="hidden sm:block">
-        <Image
-          src="/img/product/product1.jpg"
-          alt="product"
-          width="220px"
-          height="200px"
-        />
-      </div>
-      <p className="text-violet-700 mt-1">{shop[i-1]}</p>
-      <div className="flex items-center justify-between">
-        <div className="container w-16 h-3 flex ml-1 mr-auto"></div>
-      </div>
-    </div>
-    )
+    );
   }
 
   if (session === true) {
     return (
-      <div>
+      <div className="font-sans">
         <Head>
           <title>Shop Car</title>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-            rel="stylesheet"
-          />
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
@@ -133,11 +119,7 @@ export const ShopCar = () => {
             <div className="mx-10 px-2 my-10 py-4 h-[50rem] flex justify-center border-gray-200 border-2 rounded-xl sm:h-96">
               <div className="m-auto">
                 <div>
-                  <div className="flex flex-col sm:flex-row">
-                    {
-                      shopCar
-                    }
-                  </div>
+                  <div className="flex flex-col sm:flex-row">{shopCar}</div>
                 </div>
               </div>
             </div>
@@ -149,15 +131,9 @@ export const ShopCar = () => {
     );
   } else if (session === false) {
     return (
-      <div>
+      <div className="font-sans">
         <Head>
           <title>Shop Car</title>
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
-            rel="stylesheet"
-          />
           <meta
             name="viewport"
             content="initial-scale=1.0, width=device-width"
@@ -175,7 +151,7 @@ export const ShopCar = () => {
             <div className="mx-10 px-2 my-10 py-4 h-96 flex justify-center items-center border-gray-200 border-2 rounded-xl">
               <button
                 className="px-2 bg-violet-700 h-16 w-48 rounded-xl text-white hover:text-black-900 transition duration-150"
-                onClick={() => router.push("/SignIn")}
+                onClick={() => router.push("/Signin")}
               >
                 You Need Logining
               </button>
@@ -189,7 +165,7 @@ export const ShopCar = () => {
   } else {
     return (
       <>
-        <div className="h-screen my-0 w-full flex items-center justify-center bg-cyan-700 sm:my-1 sm:h-screen">
+        <div className="h-screen my-0 w-full flex items-center justify-center bg-cyan-700 sm:my-1 sm:h-screen font-sans">
           <p className="text-4xl text-violet-300 font-extrabold">Loading... </p>
         </div>
       </>

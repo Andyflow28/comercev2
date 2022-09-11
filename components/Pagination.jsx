@@ -16,13 +16,13 @@ const Pagination = (props) => {
 
   const plus = (n) => {
     const max_x1 = props.leg - 4;
-    const leg = props.leg
-    const x = props.x1
-    const y = props.x2
-    if (x >= 1  && y < leg) {
+    const leg = props.leg;
+    const x = props.x1;
+    const y = props.x2;
+    if (x >= 1 && y < leg) {
       props.setFunction(n + 1);
       console.log(n);
-    } else if (y = leg) {
+    } else if ((y = leg)) {
       props.setFunction(n);
       console.log(n);
     }
@@ -30,12 +30,12 @@ const Pagination = (props) => {
 
   const substract = (n) => {
     const max_x1 = props.leg - 4;
-    const leg = props.leg
-    const x = props.value
-    const y = props.x2
+    const leg = props.leg;
+    const x = props.value;
+    const y = props.x2;
     if (x > 1 && y <= leg) {
       props.setFunction(x - 1);
-    } else if (x = 1) {
+    } else if ((x = 1)) {
       props.setFunction(1);
     }
   };

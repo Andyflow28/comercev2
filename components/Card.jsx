@@ -2,39 +2,36 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 
 const Card = (props) => {
-  const c = props.color
+  const c = props.color;
   const [color, setColor] = useState({
     border: "",
     text: "",
     bg: "",
   });
   useEffect(() => {
-    
-  const yellow = {
-    border: " border-yellow-400 ",
-    text: " text-yellow-400 ",
-    bg: " bg-yellow-400 ",
-  };
-  const orange = {
-    border: " border-orange-400 ",
-    text: " text-orange-400 ",
-    bg: " bg-orange-400 ",
-  };
-  const violet = {
-    border: " border-violet-700 ",
-    text: " text-violet-700 ",
-    bg: " bg-violet-700 ",
-  };
-  if(c === "violet") {
-    setColor(violet)
-  } else if(c === "orange") {
-    setColor(orange)
-  } else if(c === "yellow") {
-    setColor(yellow)
-  }
-
-  }, [])
-  
+    const yellow = {
+      border: " border-yellow-400 ",
+      text: " text-yellow-400 ",
+      bg: " bg-yellow-400 ",
+    };
+    const orange = {
+      border: " border-orange-400 ",
+      text: " text-orange-400 ",
+      bg: " bg-orange-400 ",
+    };
+    const violet = {
+      border: " border-violet-700 ",
+      text: " text-violet-700 ",
+      bg: " bg-violet-700 ",
+    };
+    if (c === "violet") {
+      setColor(violet);
+    } else if (c === "orange") {
+      setColor(orange);
+    } else if (c === "yellow") {
+      setColor(yellow);
+    }
+  }, []);
 
   return (
     <div

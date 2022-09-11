@@ -8,8 +8,8 @@ export default async function loginHandler(req, res) {
   const valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
   if (
     valid.test(email) &&
-    (typeof email === typeof "") &&
-    (typeof password === typeof "") &&
+    typeof email === typeof "" &&
+    typeof password === typeof "" &&
     password.length >= 8 &&
     email.length > 0
   ) {
@@ -44,7 +44,7 @@ export default async function loginHandler(req, res) {
 
       res.setHeader("Set-Cookie", serialized);
       return res.json("login succesfully");
-    } 
+    }
   } else {
     return res.status(401).json({ error: "invalid email or password" });
   }

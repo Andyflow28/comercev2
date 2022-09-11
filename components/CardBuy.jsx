@@ -68,7 +68,10 @@ const CardBuy = (props) => {
       return (
         <>
           <div className="border-gray-300 w-10/12 h-[30rem] text-center border-2 my-5 flex justify-center flex-col">
-            <span className="text-green-500 text-4xl" onClick={() => router.push('/')}>
+            <span
+              className="text-green-500 text-4xl"
+              onClick={() => router.push("/")}
+            >
               Your order has created sucessfully
             </span>
           </div>

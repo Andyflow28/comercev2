@@ -4,11 +4,9 @@ import store from "../store";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="font-sans">
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
-    </div>
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
   );
 }
 
